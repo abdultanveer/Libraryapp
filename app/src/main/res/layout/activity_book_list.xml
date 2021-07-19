@@ -13,10 +13,10 @@
     app:layout_constraintTop_toTopOf="parent"
     />
     <ListView
+        android:id="@+id/booksListview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="1dp"
-        android:entries="@array/dummybooklist"
         android:layout_marginLeft="1dp"
         android:layout_marginTop="75dp"
         android:layout_marginEnd="1dp"
