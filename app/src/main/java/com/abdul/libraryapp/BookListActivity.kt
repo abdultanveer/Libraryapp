@@ -5,11 +5,14 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
+import android.view.View
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.EditText
 import android.widget.ListView
+import androidx.appcompat.app.AlertDialog
 
-class BookListActivity : AppCompatActivity(), TextWatcher {
+class BookListActivity : AppCompatActivity(), TextWatcher, AdapterView.OnItemClickListener {
     var TAG = BookListActivity::class.simpleName
     lateinit var searchEdittext: EditText
     lateinit var  booksListview: ListView
@@ -23,6 +26,7 @@ class BookListActivity : AppCompatActivity(), TextWatcher {
         booksListview = findViewById(R.id.booksListview)
         adapter = ArrayAdapter(this,android.R.layout.simple_list_item_1,names)
         booksListview.adapter = adapter
+        booksListview.setOnItemClickListener(this)
         searchEdittext = findViewById(R.id.etSearch)
         searchEdittext.addTextChangedListener(this)
     }
@@ -40,5 +44,13 @@ class BookListActivity : AppCompatActivity(), TextWatcher {
     }
 
     override fun afterTextChanged(s: Editable?) {
+    }
+
+    override fun onItemClick(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
+        var itemClicked = parent?.getItemAtPosition(position).toString()
+
+        var alertDialogBuilder = AlertDialog.Builder(this)
+            .setTitle(itemClicked)
+        alertDialogBuilder.show()
     }
 }
